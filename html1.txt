@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p><br>Enter the Web URL and the text that you want to search, in the below fields<br></p>
+
+<form action="contents" method="post">
+  Web URL:<br>
+  <input type="text" name="weburl" value="http://en.wikipedia.org/wiki/Filmfare_Award_for_Best_Actor" style="width: 400px;">
+  <br>
+  Text to Search:<br>
+  <input type="text" name="textsearch">
+  <br>
+  <input type="submit" name="submit" value="Submit">
+</form>
+
+</body>
+</html>

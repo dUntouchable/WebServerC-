@@ -191,6 +191,7 @@ void curlMain(){
 
   ostringstream oss;
   bool curl_check = false;
+  bool url_bool = false;
 
   Singleton *ptr = Singleton::getInstance();
   map<string,string> mymap = ptr->retrieve();
@@ -200,27 +201,34 @@ void curlMain(){
 //  cout<<"weburl:"<<str1<<endl;
 
   if(ptr->getUrl().empty()){
-     if(CURLE_OK == curl_read(str1.c_str(), oss)){
+     url_bool = true;
+  } 
+  else {
+    if(!str1.compare(ptr->getUrl())){
+       url_bool = false;
+    }
+    else {
+       url_bool = true;
+    }
+  }
+
+  if(url_bool){
+    if(CURLE_OK == curl_read(str1.c_str(), oss)){
        curl_check = true;
        string html = oss.str();
        text = stripTags(html);
 
        ptr->putUrl(str1);
        ptr->putText(text);
-     }
+    }
      else
        curl_check = false;
   }
-  else{
-    if(!str1.compare(ptr->getUrl())){
+  else {
       curl_check = true;
       text = ptr->getText();
-    }
-    else {
-      cerr<<"Something went wrong with url store\n";
-      return;
-    }
   }
+
      
   if(curl_check)   //web page url
   {

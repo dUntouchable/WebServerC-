@@ -41,6 +41,7 @@ string & Singleton::getUrl(){
 }
 
 void Singleton::putUrl(string &u){
+  url.clear();
   url = u;
 }
 
